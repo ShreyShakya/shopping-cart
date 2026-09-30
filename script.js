@@ -33,6 +33,14 @@ products.forEach((product) => {
 function renderCart(arr) {
     for (let i = 0; i < arr.length; i++) {
         const cartLi = document.createElement("p")
+        const removeBtn = document.createElement('button')
+        removeBtn.textContent = "Delete"
+        
+        removeBtn.addEventListener("click", function(){
+            cartLi.remove()
+            cart.splice(i)
+        })
+        cartView.append(removeBtn)
         cartLi.textContent = (`${arr[i].name} - ${arr[i].price}`)
         cartView.append(cartLi)
     }
