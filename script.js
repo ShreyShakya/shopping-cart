@@ -6,7 +6,7 @@ let products = [{ name: 'Laptop', price: 800 },
 
 let cart = []
 
-const body = document.body
+const divItems = document.querySelector("#div-items")
 const cartView = document.querySelector("#cart")
 const cartTotal = document.querySelector("#cart-total")
 
@@ -19,7 +19,7 @@ products.forEach((product) => {
     productPrice.textContent = `Price: ${product.price}`
     cartBtn.textContent = 'Add to cart'
 
-    body.append(productName, productPrice, cartBtn)
+    divItems.append(productName, productPrice, cartBtn)
 
     cartBtn.addEventListener("click", function () {
         cart.push(product)
@@ -35,13 +35,17 @@ function renderCart(arr) {
         const cartLi = document.createElement("p")
         const removeBtn = document.createElement('button')
         removeBtn.textContent = "Delete"
-        
-        removeBtn.addEventListener("click", function(){
+        let currentProduct = arr[i]
+
+        removeBtn.addEventListener("click", function () {
             cartLi.remove()
-            cart.splice(i)
+            cart.splice(cart.indexOf(currentProduct), 1)
+            removeBtn.remove()
+            cartTotal.textContent = `Total Cost: ${renderCartTotal(cart)}`
         })
-        cartView.append(removeBtn)
+
         cartLi.textContent = (`${arr[i].name} - ${arr[i].price}`)
+        cartLi.append(removeBtn)
         cartView.append(cartLi)
     }
 }
