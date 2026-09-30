@@ -17,7 +17,7 @@ products.forEach((product) => {
 
     productName.textContent = `Name: ${product.name}`
     productPrice.textContent = `Price: ${product.price}`
-    cartBtn.textContent = 'Add to cart'
+    cartBtn.textContent = '+ Add to cart'
 
     divItems.append(productName, productPrice, cartBtn)
 
@@ -34,7 +34,7 @@ function renderCart(arr) {
     for (let i = 0; i < arr.length; i++) {
         const cartLi = document.createElement("p")
         const removeBtn = document.createElement('button')
-        removeBtn.textContent = "Delete"
+        removeBtn.textContent = "X"
         let currentProduct = arr[i]
 
         removeBtn.addEventListener("click", function () {
